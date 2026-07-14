@@ -24,3 +24,4 @@ __pycache__/
 solvespace.egg-info/
 dist/
 .DS_Store
+extlib/gmsh/
