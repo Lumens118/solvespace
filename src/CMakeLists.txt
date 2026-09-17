@@ -30,13 +30,15 @@ target_include_directories(slvs_deps SYSTEM INTERFACE
     ${PNG_PNG_INCLUDE_DIR}
     ${FREETYPE_INCLUDE_DIRS}
     ${MIMALLOC_INCLUDE_DIR}
-    ${EIGEN3_INCLUDE_DIRS})
+    ${EIGEN3_INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}/extlib/gmsh/include)
 target_link_libraries(slvs_deps INTERFACE
     dxfrw
     ${ZLIB_LIBRARY}
     ${PNG_LIBRARY}
     ${FREETYPE_LIBRARY}
-    mimalloc-static)
+    mimalloc-static
+    "${CMAKE_SOURCE_DIR}/extlib/gmsh/lib/gmsh.lib")
 
 if(NOT USE_QT_GUI OR ENABLE_CLI)
     target_include_directories(slvs_deps SYSTEM INTERFACE ${CAIRO_INCLUDE_DIRS})
