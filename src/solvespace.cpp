@@ -1233,4 +1233,25 @@ Group *Sketch::GetRunningMeshGroupFor(hGroup h) {
     return NULL;
 }
 
+Sketch::MoveErr Sketch::CanMoveGroup(hGroup hg, MoveDir dir) const
+/***
+hg  表示希望移动的组的句柄
+dir 表示希望移动的方向
+返回 OK 表示可以移动，否则返回对应错误码
+***/
+{
+
+}
+
+Sketch::MoveErr Sketch::MoveGroup(hGroup hg, MoveDir dir)
+/***
+内部先调用 CanMoveGroup 校验：
+- 失败则不改任何数据，原样返回错误码
+- 成功则交换相邻两项，并重编号
+***/
+{
+
+}
+
+
 } // namespace SolveSpace

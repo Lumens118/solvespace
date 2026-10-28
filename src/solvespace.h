@@ -416,10 +416,27 @@ public:
     inline Group   *GetGroup  (hGroup   h) { return group.  FindById(h); }
     // Styles are handled a bit differently.
 
+    enum class MoveDir { 
+        UP=0, 
+        DOWN=1 
+    };
+
+    enum class MoveErr {
+        OK=0,               // 可以移动
+        NO_SUCH_GROUP=1,    // 组不存在
+        AT_TOP,             // 已经在最上面
+        AT_BOTTOM,          // 已经在最下面
+        IS_REFERENCE,       // 参考组（HGROUP_REFERENCES，order 0）不可移动
+        DEPENDS_ON_NEIGHBOR // 依赖相邻组，交换会破坏生成顺序
+    };
+
     void Clear();
 
     BBox CalculateEntityBBox(bool includingInvisible);
     Group *GetRunningMeshGroupFor(hGroup h);
+
+    MoveErr Sketch::CanMoveGroup(hGroup hg, MoveDir dir) const;
+    MoveErr Sketch::MoveGroup(hGroup hg, MoveDir dir);
 };
 #undef ENTITY
 #undef CONSTRAINT
